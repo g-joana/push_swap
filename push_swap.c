@@ -2,18 +2,29 @@
 
 int	main(int argc, char **argv)
 {
-	int	nbr;
 	int	count;
 	int	*numbers;
+	// t_stack	a;
+	// t_stack	b;
 
-	nbr = 1;
-	count = 0;
-	if (argc < 3)
+	if (argc <= 2)
 		return 0;
-	while (argv[nbr] && nbr < argc)
+	count = 0;
+	while (argv[count + 1] && (count + 1) < argc)
+		count++;
+	numbers = (int *) malloc((count - 1) * sizeof(int));
+	if (!numbers)
+		return (1);
+	count = 0;
+	while (argv[count + 1] && (count + 1) < argc)
 	{
-		numbers[count] = ft_atoi(argv[nbr]);
-		nbr++;
+		// tratar max int - min int
+		numbers[count] = ft_atoi(argv[count + 1]);
 		count++;
 	}
+	bubble_sort(numbers, count);
+	// a = set_stack(numbers, count);
+	// b = set_stack();
+	// order_stack(&a, &b);
+	return (0);
 }

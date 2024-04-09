@@ -6,7 +6,7 @@ NAME = push_swap
 
 all:$(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(FLAGS) $(SRC) -o $(NAME)
 
 .c.o: $(SRC)
