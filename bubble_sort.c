@@ -1,11 +1,13 @@
 #include "push_swap.h"
 
-void	bubble_sort(int *numbers, int count)
+void	bubble_sort(int *numbers, int len)
 {
 	int	i;
 	int	temp;
 
-	while (i < count)
+	i = 0;
+	ft_printf("\nbubble\n");
+	while (i + 1 < len)
 	{
 		if (numbers[i] > numbers[i + 1])
 		{
@@ -14,6 +16,21 @@ void	bubble_sort(int *numbers, int count)
 			numbers[i + 1] = temp;
 			i = 0;
 		}
-		i++;
+		else
+			i++;
+	}
+}
+
+void	index_stack(t_number *node, int len, int *indexes)
+{
+	int	count;
+	int	temp;
+
+	count = 0;
+	while (count < len)
+	{
+		node->index = indexes[count];
+		node = node->next;
+		count++;
 	}
 }
