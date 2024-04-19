@@ -1,15 +1,24 @@
 #include "push_swap.h"
 
-t_stack	set_stack(int *numbers, int len)
+t_stack	*set_stack(int *numbers, int len)
 {
 	int	i;
 	t_node	*node;
 	t_stack	*stack;
 
 	i = 0;
-	node = (t_node *)malloc(len * sizeof(t_node));
-	if (!node) //free
-		return (NULL);
+	while (i < len)
+	{
+		node = (t_node *)malloc(sizeof(t_node));
+		if (!node)
+		{
+			freellist(&node - i, i);
+			return (NULL);
+		}
+		node = node->next;
+		i++;
+	}
+	node = node - i;
 	if (!numbers)
 	{
 		node = NULL;
@@ -27,5 +36,5 @@ t_stack	set_stack(int *numbers, int len)
 	}
 	node = NULL;
 	stack->tail = node;
-	return (*stack);
+	return (stack);
 }
