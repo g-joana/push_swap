@@ -4,34 +4,38 @@ t_stack	*set_stack(int *numbers, int len)
 {
 	int	i;
 	t_node	*node;
+	t_node	*head;
 	t_stack	*stack;
 
 	i = 0;
-	while (i < len)
+	//TODO: malocar essa merda
+	//TODO: colocar em outra func
+	//TODO: fazer funcoes de lista com t_node e free
+	while (i++ < len)
 	{
+		node = new_node();
 		node = (t_node *)malloc(sizeof(t_node));
 		if (!node)
 		{
-			freellist(&node - i, i);
+			ft_lstclear_bonus(&head, free);
 			return (NULL);
 		}
-		node = node->next;
-		i++;
+		ft_lstadd_back_bonus(&head, node);
 	}
-	node = node - i;
 	if (!numbers)
 	{
-		node = NULL;
+		head = NULL;
 		stack->len = 0;
-		stack->head = node;
-		stack->tail = node;
+		stack->head = head;
+		stack->tail = head;
+		return (stack);
 	}
-	else
-		stack->len = len;
-	stack->head = node;
+	stack->len = len;
+	stack->head = head;
+	i = 0;
 	while(i < len)
 	{
-		node->value = numbers[i];
+		node->value = numbers[i++];
 		node = node->next;
 	}
 	node = NULL;
