@@ -34,4 +34,17 @@ t_node	*pop_end(t_stack *stack);
 void	push_end(t_node *node, t_stack *stack);
 void	print_stack(t_stack *a);
 
+void	ra(t_stack *a, int print);
+void	rb(t_stack *b, int print);
+void	rr(t_stack *a, t_stack *b);
+void	rra(t_stack *a, int print);
+void	rrb(t_stack *b, int print);
+void	rrr(t_stack *a, t_stack *b);
+
+void	sa(t_stack *a, int print);
+void	sb(t_stack *b, int print);
+void	ss(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+
 #endif
