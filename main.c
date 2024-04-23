@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	a = set_stack(numbers, len);
 	b = set_stack(NULL, 0);
 	bubble_sort(numbers, len);
-	index_stack(a, numbers);
-	// order_stack(&a, &b);
+	index_stack(&a, numbers);
+	order_stack(&a, &b);
 	return (0);
 }
