@@ -10,10 +10,9 @@ t_stack	set_stack(int *numbers, int len)
 	stack.len = 0;
 	stack.head = NULL;
 	stack.tail = NULL;
-	while (i >= 0) // CHECK: Index 0 esta sendo pulado
+	while (i >= 0)
 	{
-		node = new_node(numbers[i]); // CHECK: Ordem de insercao esta errada.
-		printf("NEW NODE: %i\n", node->value);
+		node = new_node(numbers[i]);
 		if (!node)
 		{
 			del_stack(&stack);

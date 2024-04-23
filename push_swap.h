@@ -32,7 +32,7 @@ void	del_stack(t_stack *stack);
 
 t_node	*pop_end(t_stack *stack);
 void	push_end(t_node *node, t_stack *stack);
-void	print_stack(t_stack *a);
+void	print_stack(t_stack *stack, char c);
 
 void	ra(t_stack *a, int print);
 void	rb(t_stack *b, int print);

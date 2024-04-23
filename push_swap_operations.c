@@ -9,8 +9,8 @@ void	sa(t_stack *a, int print)
 		return ;
 	temp = pop(a);
 	temp2 = pop(a);
-	push(temp2, a);
 	push(temp, a);
+	push(temp2, a);
 	if (print)
 		ft_printf("sa\n");
 }
@@ -24,8 +24,8 @@ void	sb(t_stack *b, int print)
 		return ;
 	temp = pop(b);
 	temp2 = pop(b);
-	push(temp2, b);
 	push(temp, b);
+	push(temp2, b);
 	if (print)
 		ft_printf("sb\n");
 }

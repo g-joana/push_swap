@@ -4,7 +4,9 @@ t_node	*new_node(int number)
 {
 	t_node *node;
 
-	node = (t_node *)malloc(sizeof(t_node));
+	node = malloc(sizeof(t_node));
+	if (!node)
+		exit(1);
 	node->index = 0;
 	node->value = number;
 	node->prev = NULL;

@@ -30,7 +30,7 @@ void	index_stack(t_stack *stack, int *indexes)
 	node = stack->head;
 	while (count < stack->len)
 	{
-		node->index = indexes[count];
+		node->index = indexes[count]; // BUG: errado
 		node = node->next;
 		count++;
 	}

@@ -4,9 +4,6 @@ CC = cc
 FLAGS = -Wall -Werror -Wextra -g
 NAME = push_swap
 LIBFT = libft/libft.a
-TEST =  test.c bubble_sort.c push_swap_operations.c rotate_operations.c order_stack.c set_stack.c operations_utils.c
-OBJT = $(TEST:.c=.o)
-TESTNAME = test
 
 all: $(NAME)
 
@@ -15,8 +12,6 @@ $(NAME): $(OBJ) $(LIBFT)
 
 .c.o: $(SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
-
-test: $(TESTNAME)
 
 $(TESTNAME): $(OBJT) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJT) $(LIBFT) -o $(NAME)
