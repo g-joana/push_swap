@@ -1,16 +1,27 @@
-SRC =  main.c bubble_sort.c push_swap.c set_stack.c stack_utils.c
+SRC =  main.c bubble_sort.c push_swap_operations.c rotate_operations.c order_stack.c set_stack.c operations_utils.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g
 NAME = push_swap
 LIBFT = libft/libft.a
+TEST =  test.c bubble_sort.c push_swap_operations.c rotate_operations.c order_stack.c set_stack.c operations_utils.c
+OBJT = $(TEST:.c=.o)
+TESTNAME = test
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 .c.o: $(SRC)
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+
+test: $(TESTNAME)
+
+$(TESTNAME): $(OBJT) $(LIBFT)
+	$(CC) $(FLAGS) $(OBJT) $(LIBFT) -o $(NAME)
+
+.c.o: $(TEST)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
@@ -23,6 +34,13 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C libft/
+
+tclean:
+	rm -rf $(OBJT)
+	rm -rf $(TESTNAME)
+	make fclean -C libft/
+
+ret: fclean all
 
 re: fclean all
 

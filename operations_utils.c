@@ -102,18 +102,3 @@ void	del_stack(t_stack *stack)
 	}
 	free(stack);
 }
-
-#include <stdio.h>
-void	print_stack(t_stack *a)
-{
-	t_node *tmp;
-
-	tmp = a->head;
-	printf("--------------------\n");
-	while(tmp)
-	{
-		printf("%i\n", tmp->value);
-		tmp = tmp->next;
-	}
-	printf("--------------------\n");
-}
