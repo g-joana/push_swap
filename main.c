@@ -9,7 +9,7 @@ void	print_stack(t_stack *stack, char c)
 	tmp = stack->head;
 	while(tmp)
 	{
-		printf("%i\n", tmp->value);
+		printf("nbr: %i | index: %i\n", tmp->value, tmp->index);
 		tmp = tmp->next;
 	}
 	printf("------------------------------------------\n");
@@ -59,13 +59,11 @@ int	main(int argc, char **argv)
 	if (!numbers)
 		return (1);
 	len = 0;
-	// while (argv[len + 1] && (len + 1) <= argc)
 	while (len < (argc - 1))
 	{
 		//TODO: tratar max int - min int
 		//TODO: validar: se eh td numero,
 		numbers[len] = ft_atoi(argv[len + 1]);
-		// ft_printf("%i\n", numbers[count]);
 		len++;
 	}
 	// print_int_tab(numbers, len);
