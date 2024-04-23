@@ -35,8 +35,6 @@ t_node	*pop(t_stack *stack)
 	if (!stack->head)
 		return(NULL);
 	node = stack->head;
-	node->prev = NULL;
-	node->next = NULL; // BUG: gera segfault pq node e stack->head sao a mesma memoria, portanto, ao fazer node->next = NULL acontece que stack->head tambem fica = NULL. Temos que fazer isso depois de atualizar a lista
 	if (stack->len == 1)
 	{
 		stack->head = NULL;
@@ -47,6 +45,8 @@ t_node	*pop(t_stack *stack)
 		stack->head = stack->head->next;
 		stack->head->prev = NULL;
 	}
+	node->prev = NULL;
+	node->next = NULL; // CHECK: gera segfault pq node e stack->head sao a mesma memoria
 	stack->len--;
 	return(node);
 }
@@ -74,8 +74,6 @@ t_node	*pop_end(t_stack *stack)
 	if (!stack->head)
 		return(NULL);
 	node = stack->tail;
-	node->prev = NULL;
-	node->next = NULL;
 	if (stack->len == 1)
 	{
 		stack->tail = NULL;
@@ -86,6 +84,8 @@ t_node	*pop_end(t_stack *stack)
 		stack->tail = stack->tail->prev;
 		stack->tail->next = NULL;
 	}
+	node->prev = NULL;
+	node->next = NULL;
 	stack->len--;
 	return(node);
 }
