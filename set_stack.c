@@ -1,44 +1,26 @@
 #include "push_swap.h"
 
-t_stack	*set_stack(int *numbers, int len)
+t_stack	set_stack(int *numbers, int len)
 {
 	int	i;
 	t_node	*node;
-	t_node	*head;
-	t_stack	*stack;
+	t_stack	stack;
 
 	i = 0;
-	//TODO: malocar essa merda
-	//TODO: colocar em outra func
-	//TODO: fazer funcoes de lista com t_node e free
-	while (i++ < len)
+	stack.len = 0;
+	stack.head = NULL;
+	stack.tail = NULL;
+	while (i++ < len) // BUG: Index 0 esta sendo pulado
 	{
-		node = new_node();
-		node = (t_node *)malloc(sizeof(t_node));
+		node = new_node(numbers[i]); // BUG: Ordem de insercao esta errada.
+		printf("NEW NODE: %i\n", node->value);
 		if (!node)
 		{
-			ft_lstclear_bonus(&head, free);
-			return (NULL);
+			del_stack(&stack);
+			free(numbers);
+			exit(1);
 		}
-		ft_lstadd_back_bonus(&head, node);
+		push(node, &stack);
 	}
-	if (!numbers)
-	{
-		head = NULL;
-		stack->len = 0;
-		stack->head = head;
-		stack->tail = head;
-		return (stack);
-	}
-	stack->len = len;
-	stack->head = head;
-	i = 0;
-	while(i < len)
-	{
-		node->value = numbers[i++];
-		node = node->next;
-	}
-	node = NULL;
-	stack->tail = node;
 	return (stack);
 }

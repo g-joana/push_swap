@@ -21,10 +21,9 @@ void	bubble_sort(int *numbers, int len)
 	}
 }
 
-void	index_stack(t_number *node, int len, int *indexes)
+void	index_stack(t_node *node, int len, int *indexes)
 {
 	int	count;
-	int	temp;
 
 	count = 0;
 	while (count < len)

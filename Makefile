@@ -1,4 +1,4 @@
-SRC = bubble_sort.c push_swap.c set_stack.c
+SRC =  main.c bubble_sort.c push_swap.c set_stack.c stack_utils.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g
@@ -8,7 +8,7 @@ LIBFT = libft/libft.a
 all:$(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(FLAGS) $(SRC) $(LIBFT) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 .c.o: $(SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
