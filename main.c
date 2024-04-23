@@ -39,10 +39,11 @@ int	main(int argc, char **argv)
 		len++;
 		count++;
 	}
-	print_int_tab(numbers, len);
+	// print_int_tab(numbers, len);
 	a = set_stack(numbers, len);
-	// b = set_stack();
-	index_stack(a.head, a.len, numbers);
+	b = set_stack(NULL, 0);
+	bubble_sort(numbers, len);
+	index_stack(a, numbers);
 	// order_stack(&a, &b);
 	return (0);
 }

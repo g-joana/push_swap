@@ -23,7 +23,7 @@ typedef struct s_stack {
 
 void	bubble_sort(int *numbers, int count);
 t_stack	set_stack(int *numbers, int len);
-void	index_stack(t_node *stack, int len, int *indexes);
+void	index_stack(t_stack *stack, int *indexes);
 t_node	*new_node(int number);
 void	push(t_node *node, t_stack *stack);
 t_node	*pop(t_stack *stack);
