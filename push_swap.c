@@ -32,9 +32,22 @@ void	ss(t_stack *a, t_stack *b)
 	sb(b);
 }
 
-// void	pa()
-// {
-//
-// }
-//
-// void	pb(){}
+void	pa(t_stack *a, t_stack *b)
+{
+	t_node	*node;
+
+	if (b->head == NULL)
+		return ;
+	node = pop(a);
+	push(node, b);
+}
+
+void	pb(t_stack *a, t_stack *b)
+{
+	t_node	*node;
+
+	if (a->head == NULL)
+		return ;
+	node = pop(b);
+	push(node, a);
+}
