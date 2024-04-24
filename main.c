@@ -45,45 +45,60 @@ void	print_int_tab(int *numbers, int len)
 	ft_printf("\n");
 }
 
-int	count_split(char **split)
+int	count_numbers(char **split)
 {
 	int	i;
+	int	n;
 
 	i = 0;
+	n = 0;
 	while (split[i] != NULL)
+	{
+		while (split[i][n] != '\0')
+		{
+			if (split[i][n] < '0' && split[i][n] > '9')
+				return (-i);
+			n++;
+		}
 		i++;
+	}
 	return (i);
 }
 
 int	main(int argc, char **argv)
 {
-	char	**splitted_argv;
+	char	**argv_split;
 	int	len;
 	int	*numbers;
 	t_stack	a;
 	t_stack	b;
-	int	i;
+	int	count;
 
-	if (argc == 2)
+	count = 1;
+	while (count <= argc)
 	{
-		splitted_argv = ft_split(argv[1], ' ');
-		len = count_split(splitted_argv);
-		//TODO: validar se eh td numero
+		// argv_split = ft_split(argv[1], ' ');
+		splitcat(argv_split, ft_split(argv[count], ' '));
+		len = count_numbers(argv_split);
 	}
-	else
-		len = argc - 1;
 	if (len < 2)
 		return 0;
-	numbers = (int *) malloc((argc - 1) * sizeof(int));
+	if (len < 0)
+	{
+		free_split(argv_split);
+		perror("Error");
+		return (1);
+	}
+	numbers = (int *) malloc(len * sizeof(int));
 	if (!numbers)
 		return (1);
-	i = 0;
-	while (i < len)
+	count = 0;
+	while (count < len)
 	{
 		//TODO: tratar max int - min int
 		//TODO: validar: se eh td numero,
-		numbers[len] = ft_atoi(argv[len + 1]);
-		len++;
+		numbers[count] = ft_atoi(argv_split[count + 1]);
+		count++;
 	}
 	// print_int_tab(numbers, len);
 	a = set_stack(numbers, len);
