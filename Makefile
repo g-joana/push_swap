@@ -1,4 +1,4 @@
-SRC =  main.c bubble_sort.c push_swap_operations.c rotate_operations.c order_stack.c set_stack.c operations_utils.c
+SRC =  main.c bubble_sort.c push_swap_operations.c rotate_operations.c order_stack.c set_stack.c operations_utils.c radix.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g

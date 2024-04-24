@@ -13,8 +13,8 @@ void	order_stack(t_stack *a, t_stack *b, int *numbers)
 		order3(a);
 	else if (a->len == 5 || a->len == 4)
 		order5(a, b);
-	// else
-		// radix(a, b);
+	else
+		radix(a, b);
 }
 
 void	order2(t_stack *a)

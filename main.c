@@ -71,10 +71,9 @@ int	main(int argc, char **argv)
 	b = set_stack(NULL, 0);
 	// test(&a, &b);
 	order_stack(&a, &b, numbers);
-	// test(&a, &b);
+	test(&a, &b);
 	// free(numbers);
 	// del_stack(&a);
-	// del_stack(&b);
 	(void) indexes;
 	return (0);
 }
