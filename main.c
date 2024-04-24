@@ -45,21 +45,40 @@ void	print_int_tab(int *numbers, int len)
 	ft_printf("\n");
 }
 
+int	count_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i] != NULL)
+		i++;
+	return (i);
+}
+
 int	main(int argc, char **argv)
 {
-	int	*indexes;
+	char	**splitted_argv;
 	int	len;
 	int	*numbers;
 	t_stack	a;
 	t_stack	b;
+	int	i;
 
-	if (argc <= 2)
+	if (argc == 2)
+	{
+		splitted_argv = ft_split(argv[1], ' ');
+		len = count_split(splitted_argv);
+		//TODO: validar se eh td numero
+	}
+	else
+		len = argc - 1;
+	if (len < 2)
 		return 0;
 	numbers = (int *) malloc((argc - 1) * sizeof(int));
 	if (!numbers)
 		return (1);
-	len = 0;
-	while (len < (argc - 1))
+	i = 0;
+	while (i < len)
 	{
 		//TODO: tratar max int - min int
 		//TODO: validar: se eh td numero,
@@ -74,6 +93,5 @@ int	main(int argc, char **argv)
 	test(&a, &b);
 	// free(numbers);
 	// del_stack(&a);
-	(void) indexes;
 	return (0);
 }

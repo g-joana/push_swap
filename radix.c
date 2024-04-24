@@ -21,7 +21,6 @@ void	radix(t_stack *a, t_stack *b)
 	int	shift;
 
 	shift = 0;
-	ft_printf("%i\n", a->maxshift);
 	len = a->len;
 	while (shift <= a->maxshift)
 	{
@@ -33,8 +32,6 @@ void	radix(t_stack *a, t_stack *b)
 			else
 				pb(a, b);
 		}
-		print_stack(a, 'a');
-		print_stack(b, 'b');
 		while (b->len > 0)
 			pa(a, b);
 		shift++;
