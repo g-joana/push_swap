@@ -23,9 +23,9 @@ void	test(t_stack *a, t_stack *b)
 	// pb(a, b);
 	// print_stack(a, 'a');
 	// rra(a, 1);
-	// print_stack(a, 'a');
+	print_stack(a, 'a');
 	// print_stack(b, 'b');
-	// printf("\n");
+	printf("\n");
 	// printf("\n");
 	// printf("\n");
 	(void)a, (void)b;
@@ -69,10 +69,12 @@ int	main(int argc, char **argv)
 	// print_int_tab(numbers, len);
 	a = set_stack(numbers, len);
 	b = set_stack(NULL, 0);
-	bubble_sort(numbers, len);
-	index_stack(&a, numbers);
-	test(&a, &b);
-	// order_stack(&a, &b);
+	// test(&a, &b);
+	order_stack(&a, &b, numbers);
+	// test(&a, &b);
+	// free(numbers);
+	// del_stack(&a);
+	// del_stack(&b);
 	(void) indexes;
 	return (0);
 }

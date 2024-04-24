@@ -34,6 +34,13 @@ t_node	*pop_end(t_stack *stack);
 void	push_end(t_node *node, t_stack *stack);
 void	print_stack(t_stack *stack, char c);
 void	print_int_tab(int *numbers, int len);
+void	order_stack(t_stack *a, t_stack *b, int *numbers);
+void	order_stack(t_stack *a, t_stack *b, int *numbers);
+void	order2(t_stack *a);
+void	order3(t_stack *a);
+int	absolute(int nbr);
+void	order5(t_stack *a, t_stack *b);
+void	test(t_stack *a, t_stack *b);
 
 void	ra(t_stack *a, int print);
 void	rb(t_stack *b, int print);
