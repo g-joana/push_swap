@@ -8,6 +8,11 @@
 #include <limits.h>
 #include <stdio.h>
 
+typedef struct s_numbers {
+	int	*numbers;
+	int	len;
+} t_numbers;
+
 typedef struct s_node {
 	int		index;
 	int		value;
