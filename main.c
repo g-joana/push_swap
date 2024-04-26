@@ -45,22 +45,36 @@ void	print_int_tab(int *numbers, int len)
 	ft_printf("\n");
 }
 
-int	count_numbers_from_index(char **split, int i)
+//TODO: validar: num duplicado
+
+
+int	count_numbers(char **split)
 {
+	int	i;
 	int	n;
 	//
-	n = 0;
-	while (split[i] != NULL)
+	i = 0;
+	while (split[++i] != NULL)
 	{
-		while (split[i][n] != '\0')
+		n = 0;
+		while (split[i][n] != '\0') 
 		{
-			if (split[i][n] < '0' && split[i][n] > '9')
-				return (-1);
+			if (split[i][n] != ' ' && !(split[i][n] >= '0' && split[i][n] <= '9'))
+			{
+				if (split[i][n] == '-')
+				{
+					if (n != 0 && split[i][n - 1] != ' ')
+						return (-1);
+					if (split[i][n + 1] < '0' || split[i][n + 1] > '9')
+						return (-1);
+				}
+				else
+					return (-1);
+			}
 			n++;
 		}
-		i++;
 	}
-	return (i);
+	return (i - 1);
 }
 
 int	splitlen(char **split)
@@ -68,7 +82,7 @@ int	splitlen(char **split)
 	int	i;
 	//
 	i = 0;
-	while (split[i] && split[i] != NULL)
+	while (split && split[i] != NULL)
 		i++;
 	return (i);
 
@@ -99,35 +113,6 @@ char	*strmcat(char *s1, char *s2)
 	return (strmcat);
 }
 
-char	**splitcat(char **split1, char **split2)
-{
-	int	i;
-	int	is2;
-	char	**splitcat;
-	//
-	i = 0;
-	splitcat = (char **)malloc((splitlen(split1) + splitlen(split2) + 1) * sizeof(char *));
-	while (split1[i] != NULL)
-	{
-		splitcat[i] = split1[i];
-		// free(split1[i]);
-		i++;
-	}
-	// free(split1[i]);
-	is2 = 0;
-	while (split2[is2] != NULL)
-	{
-		splitcat[i + is2] = split2[is2];
-		// free(split2[is2]);
-		is2++;
-	}
-	splitcat[i + is2] = NULL;
-	// free(split2[is2]);
-	// free(split1);
-	// free(split2);
-	return (splitcat);
-}
-
 void	free_split(char **split)
 {
 	int	i;
@@ -141,13 +126,40 @@ void	free_split(char **split)
 	free(split);
 }
 
+char	**splitcat(char **split1, char **split2)
+{
+	int	i;
+	int	is2;
+	char	**splitcat;
+	//
+	i = 0;
+	splitcat = (char **)malloc((splitlen(split1) + splitlen(split2) + 1) * sizeof(char *));
+	printf("Entrou uma vez\n");
+	// printf("split begins\n");
+	while (split1[i] != NULL)
+	{
+		splitcat[i] = ft_strdup(split1[i]);
+		i++;
+	}
+	is2 = 0;
+	while (split2[is2] != NULL)
+	{
+		splitcat[i + is2] = ft_strdup(split2[is2]);
+		is2++;
+	}
+	splitcat[i + is2] = NULL;
+	free_split(split1);
+	free_split(split2);
+	return (splitcat);
+}
+
 int	ft_atol(char *ascii)
 {
 	int	i;
 	int	sig;
 	int	count;
 	int	nb;
-
+	//
 	i = 0;
 	sig = 1;
 	count = 1;
@@ -165,6 +177,21 @@ int	ft_atol(char *ascii)
 	return (nb * sig);
 }
 
+void	print_split(char **splited)
+{
+	int	i;
+
+	i = -1;
+	printf("------------------------------------\n");
+	if (!splited)
+	{
+		printf("(null)\n");
+	}
+	while(splited[++i])
+		printf("splited[%i] = %s\n",i, splited[i]);
+	printf("------------------------------------\n");
+}
+
 t_numbers	*parse_args(int argc, char **argv)
 {
 	char	**argv_split;
@@ -172,42 +199,43 @@ t_numbers	*parse_args(int argc, char **argv)
 	int	arg;
 	int	*numbers;
 	t_numbers	*array;
-	//
+	//"1 2 3" "4 10 15"
 	arg = 1;
-	count = 0;
-	argv_split = ft_split(argv[arg++], ' ');
-	count = count_numbers_from_index(argv_split, count);
-	while (arg < argc) // <=
+	count = count_numbers(argv);
+	printf("count: %i\n", count);
+	if (count < 0)
 	{
-		argv_split = splitcat(argv_split, ft_split(argv[arg], ' '));
-		count = count_numbers_from_index(argv_split, count);
-		if (count < 0)
-		{
-			free_split(argv_split);
-			perror("Error");
-			return (NULL);
-		}
-		arg++;
+		ft_putstr_fd("Error\n", 2);
+		return (NULL);
 	}
 	if (count < 2)
 		exit (0);
+	argv_split = ft_split(argv[arg++], ' ');
+	while (arg < argc)
+	{
+		argv_split = splitcat(argv_split, ft_split(argv[arg], ' '));
+		arg++;
+	}
 	// set_array();
 	numbers = (int *) malloc(count * sizeof(int));
 	if (!numbers)
 		return (NULL);
 	arg = 0;
+	print_split(argv_split);
 	while (arg < count)
 	{
 		//TODO: tratar max int - min int
-		numbers[arg] = ft_atol(argv_split[arg + 1]);
+		numbers[arg] = ft_atol(argv_split[arg]);
 		arg++;
 	}
+	//validar: num dup
 	array = (t_numbers *)malloc(sizeof(t_numbers));
 	array->numbers = numbers;
 	array->len = count;
 	return (array);
 }
 
+//TODO: validar na main argv vazio; ""
 int	main(int argc, char **argv)
 {
 	t_numbers	*array;
