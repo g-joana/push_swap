@@ -102,5 +102,4 @@ void	del_stack(t_stack *stack)
 		free(stack->head);
 		stack->head = temp;
 	}
-	free(stack);
 }

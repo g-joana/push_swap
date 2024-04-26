@@ -1,12 +1,10 @@
-
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack, char c)
+void	print_stack(t_stack *stack)
 {
 	t_node	*tmp;
 	//
 	printf("------------------------------------------\n");
-	printf("Stack: %c\n", c);
 	tmp = stack->head;
 	while(tmp)
 	{
@@ -14,21 +12,6 @@ void	print_stack(t_stack *stack, char c)
 		tmp = tmp->next;
 	}
 	printf("------------------------------------------\n");
-}
-
-void	test(t_stack *a, t_stack *b)
-{
-	// pb(a, b);
-	// pb(a, b);
-	// pb(a, b);
-	// pb(a, b);
-	// print_stack(a, 'a');
-	// rra(a, 1);
-	print_stack(a, 'a');
-	// print_stack(b, 'b');
-	// printf("\n");
-	// printf("\n");
-	(void)a, (void)b;
 }
 
 
@@ -45,11 +28,34 @@ void	print_int_tab(long *numbers, int len)
 	ft_printf("\n");
 }
 
+int	valid_nbr(char	**split, int i, int n)
+{
+	int	count;
+
+	count = 0;
+	if (split[i][n] >= '0' && split[i][n] <= '9' && (split[i][n + 1] == ' ' || split[i][n + 1] == '\0'))
+		count++;
+	if (split[i][n] != ' ' && !(split[i][n] >= '0' && split[i][n] <= '9'))
+	{
+		if (split[i][n] == '-')
+		{
+			if (n != 0 && split[i][n - 1] != ' ')
+				return (-1);
+			if (split[i][n + 1] < '0' || split[i][n + 1] > '9')
+				return (-1);
+		}
+		else
+			return (-1);
+	}
+	return(count);
+}
+
 int	count_numbers(char **split)
 {
 	int	i;
 	int	n;
 	int	count;
+	int	icount;
 	//
 	i = 0;
 	count = 0;
@@ -58,20 +64,25 @@ int	count_numbers(char **split)
 		n = 0;
 		while (split[i][n] != '\0') 
 		{
-			if (split[i][n] >= '0' && split[i][n] <= '9' && (split[i][n + 1] == ' ' || split[i][n + 1] == '\0'))
-				count++;
-			if (split[i][n] != ' ' && !(split[i][n] >= '0' && split[i][n] <= '9'))
-			{
-				if (split[i][n] == '-')
-				{
-					if (n != 0 && split[i][n - 1] != ' ')
-						return (-1);
-					if (split[i][n + 1] < '0' || split[i][n + 1] > '9')
-						return (-1);
-				}
-				else
-					return (-1);
-			}
+			icount = 0;
+			icount = valid_nbr(split, i, n);
+			if (icount < 0)
+				return (-1);
+			// if (split[i][n] >= '0' && split[i][n] <= '9' && (split[i][n + 1] == ' ' || split[i][n + 1] == '\0'))
+			// 	count++;
+			// if (split[i][n] != ' ' && !(split[i][n] >= '0' && split[i][n] <= '9'))
+			// {
+			// 	if (split[i][n] == '-')
+			// 	{
+			// 		if (n != 0 && split[i][n - 1] != ' ')
+			// 			return (-1);
+			// 		if (split[i][n + 1] < '0' || split[i][n + 1] > '9')
+			// 			return (-1);
+			// 	}
+			// 	else
+			// 		return (-1);
+			//}
+			count += icount;
 			n++;
 		}
 	}
@@ -135,7 +146,6 @@ char	**splitcat(char **split1, char **split2)
 	//
 	i = 0;
 	splitcat = (char **)malloc((splitlen(split1) + splitlen(split2) + 1) * sizeof(char *));
-	// printf("split begins\n");
 	while (split1[i] != NULL)
 	{
 		splitcat[i] = ft_strdup(split1[i]);
@@ -210,6 +220,7 @@ t_numbers	*set_array(char **split, int count)
 	array = (t_numbers *)malloc(sizeof(t_numbers));
 	array->numbers = numbers;
 	array->len = count;
+	free_split(split);
 	return (array);
 }
 
@@ -223,8 +234,7 @@ t_numbers	*parse_args(int argc, char **argv)
 	//
 	arg = 1;
 	count = count_numbers(argv);
-	printf("Count: %i\n", count);
-	if (count <= 0)
+	if (count < 0)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (NULL);
@@ -264,7 +274,10 @@ int	validate_values(t_numbers *array)
 	{
 		n = 0;
 		if (array->numbers[i] > INT_MAX || array->numbers[i] < INT_MIN)
+		{
 			return (0);
+
+		}
 		while (n < array->len)
 		{
 			if (n == i)
@@ -272,7 +285,10 @@ int	validate_values(t_numbers *array)
 			if (n >= array->len)
 				break;
 			if (array->numbers[n] == array->numbers[i])
+			{
+
 				return (0);
+			}
 			n++;
 		}
 		i++;
@@ -291,14 +307,16 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!validate_values(array))
 	{
+		free(array->numbers);
+		free(array);
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
 	a = set_stack(array->numbers, array->len);
 	b = set_stack(NULL, 0);
 	order_stack(&a, &b, array->numbers);
-	// test(&a, &b);
-	// free(numbers);
-	// del_stack(&a);
+	free(array->numbers);
+	free(array);
+	del_stack(&a);
 	return (0);
 }

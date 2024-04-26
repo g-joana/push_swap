@@ -7,6 +7,8 @@ int	is_ordered(t_stack *a)
 	node = a->head;
 	while (node != NULL)
 	{
+		if (node->next == NULL)
+			break;
 		if (node->index > node->next->index)
 			return (0);
 		node = node->next;

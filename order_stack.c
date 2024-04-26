@@ -9,6 +9,8 @@ void	order_stack(t_stack *a, t_stack *b, long *numbers)
 	}
 	bubble_sort(numbers, a->len);
 	index_stack(a, numbers);
+	if (is_ordered(a))
+		return ;
 	if (a->len == 3)
 		order3(a);
 	else if (a->len == 5 || a->len == 4)
@@ -81,5 +83,4 @@ void	order5(t_stack *a, t_stack *b)
 		sb(b, 1);
 	pa(a, b);
 	pa(a, b);
-	print_stack(a, 'a');
 }
