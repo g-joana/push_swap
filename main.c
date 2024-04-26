@@ -1,3 +1,4 @@
+
 #include "push_swap.h"
 
 void	print_stack(t_stack *stack, char c)
@@ -25,7 +26,6 @@ void	test(t_stack *a, t_stack *b)
 	// rra(a, 1);
 	print_stack(a, 'a');
 	// print_stack(b, 'b');
-	printf("\n");
 	// printf("\n");
 	// printf("\n");
 	(void)a, (void)b;
@@ -49,13 +49,17 @@ int	count_numbers(char **split)
 {
 	int	i;
 	int	n;
+	int	count;
 	//
 	i = 0;
+	count = 0;
 	while (split[++i] != NULL)
 	{
 		n = 0;
 		while (split[i][n] != '\0') 
 		{
+			if (split[i][n] >= '0' && split[i][n] <= '9' && (split[i][n + 1] == ' ' || split[i][n + 1] == '\0'))
+				count++;
 			if (split[i][n] != ' ' && !(split[i][n] >= '0' && split[i][n] <= '9'))
 			{
 				if (split[i][n] == '-')
@@ -71,7 +75,7 @@ int	count_numbers(char **split)
 			n++;
 		}
 	}
-	return (i - 1);
+	return (count);
 }
 
 int	splitlen(char **split)
@@ -131,7 +135,6 @@ char	**splitcat(char **split1, char **split2)
 	//
 	i = 0;
 	splitcat = (char **)malloc((splitlen(split1) + splitlen(split2) + 1) * sizeof(char *));
-	printf("Entrou uma vez\n");
 	// printf("split begins\n");
 	while (split1[i] != NULL)
 	{
@@ -150,12 +153,12 @@ char	**splitcat(char **split1, char **split2)
 	return (splitcat);
 }
 
-int	ft_atol(char *ascii)
+long	ft_atol(char *ascii)
 {
 	int	i;
 	int	sig;
 	int	count;
-	int	nb;
+	long	nb;
 	//
 	i = 0;
 	sig = 1;
@@ -199,7 +202,6 @@ t_numbers	*set_array(char **split, int count)
 	if (!numbers)
 		return (NULL);
 	arg = 0;
-	print_split(split);
 	while (arg < count)
 	{
 		numbers[arg] = ft_atol(split[arg]);
@@ -221,7 +223,7 @@ t_numbers	*parse_args(int argc, char **argv)
 	//
 	arg = 1;
 	count = count_numbers(argv);
-	printf("count: %i\n", count);
+	printf("Count: %i\n", count);
 	if (count <= 0)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -258,15 +260,19 @@ int	validate_values(t_numbers *array)
 	int	n;
 	//
 	i = 0;
-	while (i <= array->len)
+	while (i < array->len)
 	{
 		n = 0;
-		while (n < i)
+		if (array->numbers[i] > INT_MAX || array->numbers[i] < INT_MIN)
+			return (0);
+		while (n < array->len)
 		{
-			if (array->numbers[i] > INT_MAX || array->numbers[i] < INT_MIN)
-				return (-1);
+			if (n == i)
+				n++;
+			if (n >= array->len)
+				break;
 			if (array->numbers[n] == array->numbers[i])
-				return (-1);
+				return (0);
 			n++;
 		}
 		i++;

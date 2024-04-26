@@ -6,7 +6,6 @@ void	bubble_sort(long *numbers, int len)
 	int	temp;
 
 	i = 0;
-	ft_printf("\nbubble\n");
 	while (i + 1 < len)
 	{
 		if (numbers[i] > numbers[i + 1])
