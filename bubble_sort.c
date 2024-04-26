@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	bubble_sort(int *numbers, int len)
+void	bubble_sort(long *numbers, int len)
 {
 	int	i;
 	int	temp;
@@ -21,7 +21,7 @@ void	bubble_sort(int *numbers, int len)
 	}
 }
 
-int	arraynbr(int *array, int nbr, int len)
+int	arraynbr(long *array, int nbr, int len)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	arraynbr(int *array, int nbr, int len)
 	return (-1);
 }
 
-void	index_stack(t_stack *stack, int *numbers)
+void	index_stack(t_stack *stack, long *numbers)
 {
 	int	count;
 	t_node	*node;

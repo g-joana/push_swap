@@ -32,7 +32,7 @@ void	test(t_stack *a, t_stack *b)
 }
 
 
-void	print_int_tab(int *numbers, int len)
+void	print_int_tab(long *numbers, int len)
 {
 	int	i;
 	//
@@ -44,9 +44,6 @@ void	print_int_tab(int *numbers, int len)
 	}
 	ft_printf("\n");
 }
-
-//TODO: validar: num duplicado
-
 
 int	count_numbers(char **split)
 {
@@ -192,18 +189,40 @@ void	print_split(char **splited)
 	printf("------------------------------------\n");
 }
 
+t_numbers	*set_array(char **split, int count)
+{
+	int		arg;
+	t_numbers	*array;
+	long		*numbers;
+	//
+	numbers = (long *) malloc(count * sizeof(long));
+	if (!numbers)
+		return (NULL);
+	arg = 0;
+	print_split(split);
+	while (arg < count)
+	{
+		numbers[arg] = ft_atol(split[arg]);
+		arg++;
+	}
+	array = (t_numbers *)malloc(sizeof(t_numbers));
+	array->numbers = numbers;
+	array->len = count;
+	return (array);
+}
+
 t_numbers	*parse_args(int argc, char **argv)
 {
 	char	**argv_split;
 	int	count;
 	int	arg;
-	int	*numbers;
+	// long	*numbers;
 	t_numbers	*array;
-	//"1 2 3" "4 10 15"
+	//
 	arg = 1;
 	count = count_numbers(argv);
 	printf("count: %i\n", count);
-	if (count < 0)
+	if (count <= 0)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (NULL);
@@ -216,26 +235,45 @@ t_numbers	*parse_args(int argc, char **argv)
 		argv_split = splitcat(argv_split, ft_split(argv[arg], ' '));
 		arg++;
 	}
-	// set_array();
-	numbers = (int *) malloc(count * sizeof(int));
-	if (!numbers)
-		return (NULL);
-	arg = 0;
-	print_split(argv_split);
-	while (arg < count)
-	{
-		//TODO: tratar max int - min int
-		numbers[arg] = ft_atol(argv_split[arg]);
-		arg++;
-	}
-	//validar: num dup
-	array = (t_numbers *)malloc(sizeof(t_numbers));
-	array->numbers = numbers;
-	array->len = count;
+	array = set_array(argv_split, count);
+	// numbers = (long *) malloc(count * sizeof(long));
+	// if (!numbers)
+	// 	return (NULL);
+	// arg = 0;
+	// print_split(argv_split);
+	// while (arg < count)
+	// {
+	// 	numbers[arg] = ft_atol(argv_split[arg]);
+	// 	arg++;
+	// }
+	// array = (t_numbers *)malloc(sizeof(t_numbers));
+	// array->numbers = numbers;
+	// array->len = count;
 	return (array);
 }
 
-//TODO: validar na main argv vazio; ""
+int	validate_values(t_numbers *array)
+{
+	int	i;
+	int	n;
+	//
+	i = 0;
+	while (i <= array->len)
+	{
+		n = 0;
+		while (n < i)
+		{
+			if (array->numbers[i] > INT_MAX || array->numbers[i] < INT_MIN)
+				return (-1);
+			if (array->numbers[n] == array->numbers[i])
+				return (-1);
+			n++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_numbers	*array;
@@ -245,12 +283,15 @@ int	main(int argc, char **argv)
 	array = parse_args(argc, argv);
 	if (!array)
 		return (1);
-	// print_int_tab(numbers, len);
+	if (!validate_values(array))
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
 	a = set_stack(array->numbers, array->len);
 	b = set_stack(NULL, 0);
-	// test(&a, &b);
 	order_stack(&a, &b, array->numbers);
-	test(&a, &b);
+	// test(&a, &b);
 	// free(numbers);
 	// del_stack(&a);
 	return (0);

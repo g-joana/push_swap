@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	order_stack(t_stack *a, t_stack *b, int *numbers)
+void	order_stack(t_stack *a, t_stack *b, long *numbers)
 {
 	if (a->len == 2)
 	{

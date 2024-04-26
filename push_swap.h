@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 typedef struct s_numbers {
-	int	*numbers;
+	long	*numbers;
 	int	len;
 } t_numbers;
 
@@ -27,10 +27,10 @@ typedef struct s_stack {
 	int		len;
 } t_stack;
 
-void	bubble_sort(int *numbers, int count);
-t_stack	set_stack(int *numbers, int len);
-void	index_stack(t_stack *stack, int *indexes);
-t_node	*new_node(int number);
+void	bubble_sort(long *numbers, int count);
+t_stack	set_stack(long *numbers, int len);
+void	index_stack(t_stack *stack, long *indexes);
+t_node	*new_node(long number);
 void	push(t_node *node, t_stack *stack);
 t_node	*pop(t_stack *stack);
 void	del_stack(t_stack *stack);
@@ -40,9 +40,9 @@ int	get_maxshift(int number);
 t_node	*pop_end(t_stack *stack);
 void	push_end(t_node *node, t_stack *stack);
 void	print_stack(t_stack *stack, char c);
-void	print_int_tab(int *numbers, int len);
-void	order_stack(t_stack *a, t_stack *b, int *numbers);
-void	order_stack(t_stack *a, t_stack *b, int *numbers);
+void	print_int_tab(long *numbers, int len);
+void	order_stack(t_stack *a, t_stack *b, long *numbers);
+void	order_stack(t_stack *a, t_stack *b, long *numbers);
 void	order2(t_stack *a);
 void	order3(t_stack *a);
 int	absolute(int nbr);

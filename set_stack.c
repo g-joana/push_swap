@@ -13,7 +13,7 @@ int	get_maxshift(int number)
 	return (count);
 }
 
-t_stack	set_stack(int *numbers, int len)
+t_stack	set_stack(long *numbers, int len)
 {
 	int	i;
 	t_node	*node;
