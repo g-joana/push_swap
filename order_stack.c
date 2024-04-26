@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   order_stack.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 15:11:05 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/26 15:11:06 by jgils            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	order_stack(t_stack *a, t_stack *b, long *numbers)
@@ -27,7 +39,7 @@ void	order2(t_stack *a)
 
 int	get_highest(t_stack *a)
 {
-	int	highest;
+	int		highest;
 	t_node	*node;
 
 	highest = -1;

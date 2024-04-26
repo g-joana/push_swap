@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 15:11:01 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/26 15:11:01 by jgils            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*new_node(long number)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
@@ -35,7 +47,7 @@ t_node	*pop(t_stack *stack)
 	t_node	*node;
 
 	if (!stack->head)
-		return(NULL);
+		return (NULL);
 	node = stack->head;
 	if (stack->len == 1)
 	{
@@ -48,9 +60,9 @@ t_node	*pop(t_stack *stack)
 		stack->head->prev = NULL;
 	}
 	node->prev = NULL;
-	node->next = NULL; // CHECK: gera segfault pq node e stack->head sao a mesma memoria
+	node->next = NULL;
 	stack->len--;
-	return(node);
+	return (node);
 }
 
 void	push_end(t_node *node, t_stack *stack)
@@ -74,14 +86,14 @@ t_node	*pop_end(t_stack *stack)
 	t_node	*node;
 
 	if (!stack->head)
-		return(NULL);
+		return (NULL);
 	node = stack->tail;
 	if (stack->len == 1)
 	{
 		stack->tail = NULL;
 		stack->head = stack->tail;
 	}
-	else 
+	else
 	{
 		stack->tail = stack->tail->prev;
 		stack->tail->next = NULL;
@@ -89,7 +101,7 @@ t_node	*pop_end(t_stack *stack)
 	node->prev = NULL;
 	node->next = NULL;
 	stack->len--;
-	return(node);
+	return (node);
 }
 
 void	del_stack(t_stack *stack)

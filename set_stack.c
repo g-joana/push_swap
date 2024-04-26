@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_stack.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 15:11:25 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/26 15:11:25 by jgils            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_maxshift(int number)
@@ -15,7 +27,7 @@ int	get_maxshift(int number)
 
 t_stack	set_stack(long *numbers, int len)
 {
-	int	i;
+	int		i;
 	t_node	*node;
 	t_stack	stack;
 

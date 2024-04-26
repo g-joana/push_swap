@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 15:10:55 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:10:55 by jgils            ###   ########.fr       */
+/*   Created: 2024/04/26 15:23:43 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/26 15:24:24 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_split(char **split)
 {
-	t_numbers	*array;
-	t_stack		a;
-	t_stack		b;
+	int	i;
 
-	array = parse_args(argc, argv);
-	if (!array)
-		return (1);
-	if (!validate_values(array))
+	i = 0;
+	while (split[i] != NULL)
 	{
-		free(array->numbers);
-		free(array);
-		ft_putstr_fd("Error\n", 2);
-		return (1);
+		free(split[i++]);
 	}
-	a = set_stack(array->numbers, array->len);
-	b = set_stack(NULL, 0);
-	order_stack(&a, &b, array->numbers);
-	free(array->numbers);
-	free(array);
-	del_stack(&a);
-	return (0);
+	free(split[i]);
+	free(split);
 }

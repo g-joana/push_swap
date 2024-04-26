@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 15:11:18 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/26 15:11:18 by jgils            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	is_ordered(t_stack *a)
@@ -8,7 +20,7 @@ int	is_ordered(t_stack *a)
 	while (node != NULL)
 	{
 		if (node->next == NULL)
-			break;
+			break ;
 		if (node->index > node->next->index)
 			return (0);
 		node = node->next;
@@ -29,7 +41,7 @@ void	radix(t_stack *a, t_stack *b)
 		i = 0;
 		while (i++ < len)
 		{
-			if(a->head->index & (1 << shift))
+			if (a->head->index & (1 << shift))
 				ra(a, 1);
 			else
 				pb(a, b);
