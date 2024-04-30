@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:22:56 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/30 15:29:39 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:05:03 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ t_numbers	*parse_args(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (NULL);
 	}
-	if (count < 2)
-		exit(0);
+	if (count == 0)
+		exit (1);
 	argv_split = ft_split(argv[arg++], ' ');
 	while (arg < argc)
 	{

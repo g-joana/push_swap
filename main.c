@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:10:55 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/30 15:36:31 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:03:14 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
-	a = set_stack(array->numbers, array->len);
-	b = set_stack(NULL, 0);
-	order_stack(&a, &b, array->numbers);
+	if (array->len >= 2)
+	{
+		a = set_stack(array->numbers, array->len);
+		b = set_stack(NULL, 0);
+		order_stack(&a, &b, array->numbers);
+		del_stack(&a);
+	}
 	free(array->numbers);
 	free(array);
-	del_stack(&a);
 	return (0);
 }
