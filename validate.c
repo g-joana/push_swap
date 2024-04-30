@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:21:51 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:23:26 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 15:32:15 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	count_numbers(char **split)
 		{
 			icount = 0;
 			icount = valid_nbr(split, i, n);
-			if (icount < 0)
+			if (icount < 0 || n > 11)
 				return (-1);
 			count += icount;
 			n++;
