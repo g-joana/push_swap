@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:11:05 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:11:06 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:04:24 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ void	order3(t_stack *a)
 		rra(a, 1);
 	if (a->head->index > a->head->next->index)
 		sa(a, 1);
-}
-
-int	absolute(int nbr)
-{
-	if (nbr < 0)
-		return (nbr * -1);
-	return (nbr);
 }
 
 void	order5(t_stack *a, t_stack *b)

@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:11:11 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:11:11 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:23:30 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void				push(t_node *node, t_stack *stack);
 t_node				*pop(t_stack *stack);
 void				del_stack(t_stack *stack);
 
+void				free_split(char **split);
+t_numbers			*parse_args(int argc, char **argv);
+int					validate_values(t_numbers *array);
+int					count_numbers(char **split);
+void				del_stack(t_stack *stack);
 int					get_maxshift(int number);
 t_node				*pop_end(t_stack *stack);
 void				push_end(t_node *node, t_stack *stack);

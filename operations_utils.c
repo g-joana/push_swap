@@ -6,7 +6,7 @@
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:11:01 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:11:01 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:12:12 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,4 @@ t_node	*pop_end(t_stack *stack)
 	node->next = NULL;
 	stack->len--;
 	return (node);
-}
-
-void	del_stack(t_stack *stack)
-{
-	t_node	*temp;
-
-	while (stack->head != NULL)
-	{
-		temp = stack->head->next;
-		free(stack->head);
-		stack->head = temp;
-	}
 }

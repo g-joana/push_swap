@@ -1,44 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_operations.c                                :+:      :+:    :+:   */
+/*   order_stack_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 15:11:22 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/30 14:07:39 by jgils            ###   ########.fr       */
+/*   Created: 2024/04/30 14:05:32 by jgils             #+#    #+#             */
+/*   Updated: 2024/04/30 14:12:59 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *a, int print)
+int	absolute(int nbr)
 {
-	t_node	*node;
-
-	if (a->len <= 1)
-		return ;
-	node = pop(a);
-	push_end(node, a);
-	if (print)
-		ft_printf("ra\n");
-}
-
-void	rb(t_stack *b, int print)
-{
-	t_node	*node;
-
-	if (b->len <= 1)
-		return ;
-	node = pop(b);
-	push_end(node, b);
-	if (print)
-		ft_printf("rb\n");
-}
-
-void	rr(t_stack *a, t_stack *b)
-{
-	rb(b, 0);
-	ra(a, 0);
-	ft_printf("rr\n");
+	if (nbr < 0)
+		return (nbr * -1);
+	return (nbr);
 }

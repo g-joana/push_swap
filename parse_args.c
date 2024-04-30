@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_argv.c                                       :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgils <jgils@student.42.rio>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:22:56 by jgils             #+#    #+#             */
-/*   Updated: 2024/04/26 15:23:13 by jgils            ###   ########.fr       */
+/*   Updated: 2024/04/30 14:08:43 by jgils            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ int	splitlen(char **split)
 	while (split && split[i] != NULL)
 		i++;
 	return (i);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i] != NULL)
-	{
-		free(split[i++]);
-	}
-	free(split[i]);
-	free(split);
 }
 
 char	**splitcat(char **split1, char **split2)
